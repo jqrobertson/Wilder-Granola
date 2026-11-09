@@ -89,9 +89,21 @@ body {
   border: none;
 }
 
+/* ── Hero image band ── */
+.hero-image {
+  margin-left: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+  margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px)));
+  height: 420px;
+  background: url('granola-bg.jpg') center / cover no-repeat;
+}
+
+@media (max-width: 640px) {
+  .hero-image { height: 280px; }
+}
+
 /* ── Product cards ── */
 .products {
-  padding-block: 40px;
+  padding-block: 60px;
 }
 
 .products-heading {
@@ -226,6 +238,8 @@ footer {
     <hr class="hero-divider">
     <p class="hero-tagline">Small-batch granola made by hand. Three flavors, real ingredients, nothing&nbsp;extra.</p>
   </section>
+
+  <div class="hero-image" role="img" aria-label="Close-up of freshly baked granola"></div>
 
   <section class="products">
     <h2 class="products-heading">Our Granola</h2>
