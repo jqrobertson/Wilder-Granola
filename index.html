@@ -320,10 +320,10 @@ footer a { color: #fff; }
 
     <!--
       EMAIL CAPTURE
-      To collect sign-ups, create a free form at https://formspree.io (or use
-      your Mailchimp / Klaviyo / Buttondown form URL) and paste its URL into
-      the data-endpoint attribute below. Until then, the form opens a
-      pre-filled email to WilderGranola@gmail.com as a fallback.
+      Sign-ups are saved to the "Wilder Granola Email Signups" Google Sheet.
+      Paste the Apps Script web app URL (see signup-sheet-script.gs) into
+      data-endpoint below. Until then, the form opens a pre-filled email to
+      WilderGranola@gmail.com as a fallback.
     -->
     <div class="signup">
       <p class="signup-heading">Join the pack</p>
@@ -331,6 +331,7 @@ footer a { color: #fff; }
       <form class="signup-form" id="signup" data-endpoint="">
         <label class="visually-hidden" for="signup-email">Email address</label>
         <input id="signup-email" type="email" name="email" placeholder="Your email" autocomplete="email" required>
+        <input class="visually-hidden" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button type="submit">Sign up</button>
       </form>
       <p class="signup-msg" id="signup-msg" role="status" aria-live="polite"></p>
@@ -407,17 +408,18 @@ footer a { color: #fff; }
     }
 
     msg.textContent = 'Signing you up…';
-    fetch(endpoint, {
-      method: 'POST',
-      headers: { 'Accept': 'application/json' },
-      body: new FormData(form)
-    }).then(function (res) {
-      if (!res.ok) throw new Error();
-      form.reset();
-      msg.textContent = "You're in. Welcome to the pack!";
-    }).catch(function () {
-      msg.textContent = 'Something went wrong. Please try again.';
-    });
+    var data = new URLSearchParams(new FormData(form));
+    data.append('page', window.location.href);
+    // Google Apps Script doesn't allow reading the response cross-origin,
+    // so send with no-cors and treat any completed request as success.
+    fetch(endpoint, { method: 'POST', mode: 'no-cors', body: data })
+      .then(function () {
+        form.reset();
+        msg.textContent = "You're in. Welcome to the pack!";
+      })
+      .catch(function () {
+        msg.textContent = 'Something went wrong. Please try again.';
+      });
   });
 })();
 </script>
