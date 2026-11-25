@@ -13,34 +13,45 @@
   font-style: normal;
 }
 
-* { margin: 0; box-sizing: border-box; }
-
-html, body {
-  height: 100%;
-  overflow: hidden;
+:root {
+  --espresso: #24170f;
+  --cream: #f4ece0;
+  --brown: #3b2618;
+  --muted: #7a6550;
+  --serif: 'jetsam-collection-kugelkopf', Georgia, serif;
+  --hand: 'TAYBirdie', sans-serif;
 }
 
+* { margin: 0; box-sizing: border-box; }
+
 body {
+  font-family: var(--serif);
+  background: var(--espresso);
+  color: #fff;
+}
+
+img { display: block; max-width: 100%; }
+
+/* ── Hero ── */
+.hero {
+  min-height: 100vh;
   background: url('bg.jpg') center center no-repeat;
   background-size: cover;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 60px;
+  padding: 60px 20px 80px;
+  text-align: center;
 }
 
 .logo {
   max-width: 600px;
   width: 80vw;
   height: auto;
-  display: block;
 }
 
 .tagline, .cta, .cta-heading {
-  color: #fff;
-  font-family: 'jetsam-collection-kugelkopf', Georgia, serif;
   font-weight: 700;
-  text-align: center;
   margin-top: 24px;
   font-size: 1.1rem;
 }
@@ -54,8 +65,7 @@ body {
 .cta-heading {
   font-size: 2rem;
   margin-top: 40px;
-    text-transform: uppercase;
-
+  text-transform: uppercase;
 }
 
 .dot {
@@ -63,29 +73,355 @@ body {
   vertical-align: 0.3em;
 }
 
-.cta {
-  margin-top: 8px;
-}
+.cta { margin-top: 8px; }
 
 .at {
-  font-family: 'TAYBirdie', sans-serif;
+  font-family: var(--hand);
   font-weight: 100;
 }
 
 .cta a {
   color: #fff;
-  font-family: 'TAYBirdie', sans-serif;
+  font-family: var(--hand);
   font-weight: 100;
   text-transform: uppercase;
   letter-spacing: -0.05em;
   text-decoration: none;
 }
+
+/* ── Email capture ── */
+.signup {
+  margin-top: 48px;
+  width: 100%;
+  max-width: 460px;
+}
+
+.signup-heading {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.signup-sub {
+  margin-top: 6px;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+.signup-form {
+  margin-top: 16px;
+  display: flex;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.signup-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px 20px;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 1rem;
+}
+
+.signup-form input::placeholder { color: rgba(255, 255, 255, 0.7); }
+.signup-form input:focus { outline: none; }
+.signup-form:focus-within { box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35); }
+
+.signup-form button {
+  padding: 0 24px;
+  border: 0;
+  background: #fff;
+  color: var(--espresso);
+  font-family: var(--hand);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.signup-form button:hover { background: var(--cream); }
+
+.signup-msg {
+  margin-top: 12px;
+  min-height: 1.4em;
+  font-size: 0.95rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ── Shared section styles ── */
+section.block { padding: 96px 24px; }
+
+.inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.section-heading {
+  font-family: var(--hand);
+  font-weight: normal;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* ── Products ── */
+.products {
+  background: var(--cream);
+  color: var(--brown);
+  text-align: center;
+}
+
+.products-sub {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.product-grid {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  text-align: left;
+}
+
+.product-img {
+  aspect-ratio: 4 / 5;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #e4d6c3 url('bg.jpg') center / cover;
+}
+
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-name {
+  margin-top: 20px;
+  font-family: var(--hand);
+  font-weight: normal;
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.product-tagline {
+  margin-top: 6px;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.product-ingredients {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.product-order {
+  display: inline-block;
+  margin-top: 16px;
+  color: var(--brown);
+  font-family: var(--hand);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+}
+
+/* ── Our story ── */
+.story {
+  background: var(--espresso);
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.story-copy p {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  line-height: 1.65;
+  opacity: 0.9;
+}
+
+.story-copy .section-heading { margin-bottom: 8px; }
+
+.story-sign {
+  font-family: var(--hand);
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  opacity: 1 !important;
+}
+
+.story-photo {
+  aspect-ratio: 4 / 5;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #3b2618 url('bg.jpg') center / cover;
+}
+
+.story-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Footer ── */
+footer {
+  padding: 40px 24px;
+  text-align: center;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  opacity: 0.8;
+}
+
+footer a { color: #fff; }
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .product-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+  .story-grid { grid-template-columns: 1fr; gap: 40px; }
+  .story-photo { order: -1; }
+  section.block { padding: 72px 20px; }
+}
+
+@media (max-width: 480px) {
+  .tagline { font-size: 1.25rem; }
+  .signup-form { flex-direction: column; border-radius: 16px; }
+  .signup-form button { padding: 14px; }
+}
 </style>
 </head>
 <body>
-  <img class="logo" src="logo.png" alt="Wilder Granola">
-  <p class="tagline">Homemade small batch granola from DC</p>
-  <p class="cta-heading"><span class="dot">●</span> Go <span class="dot">●</span> Wild <span class="dot">●</span></p>
-  <p class="cta">Order at:<br><a href="mailto:WilderGranola@gmail.com">WilderGranola<span class="at">@</span>gmail.com</a></p>
+
+  <header class="hero">
+    <img class="logo" src="logo.png" alt="Wilder Granola">
+    <p class="tagline">Homemade small batch granola from DC</p>
+    <p class="cta-heading"><span class="dot">●</span> Go <span class="dot">●</span> Wild <span class="dot">●</span></p>
+    <p class="cta">Order at:<br><a href="mailto:WilderGranola@gmail.com">WilderGranola<span class="at">@</span>gmail.com</a></p>
+
+    <!--
+      EMAIL CAPTURE
+      Sign-ups are saved to the "Wilder Granola Email Signups" Google Sheet.
+      Paste the Apps Script web app URL (see signup-sheet-script.gs) into
+      data-endpoint below. Until then, the form opens a pre-filled email to
+      WilderGranola@gmail.com as a fallback.
+    -->
+    <div class="signup">
+      <p class="signup-heading">Join the pack</p>
+      <p class="signup-sub">New batches, flavor drops &amp; pop-ups. No spam.</p>
+      <form class="signup-form" id="signup" data-endpoint="https://script.google.com/macros/s/AKfycbxpm4FVL7TWmf-Pk4I-FTeVIBnn5eU1Jzt4JxNO6DukkgNXTC6M0yFmOQ7v1GWwa-wWdw/exec">
+        <label class="visually-hidden" for="signup-email">Email address</label>
+        <input id="signup-email" type="email" name="email" placeholder="Your email" autocomplete="email" required>
+        <input class="visually-hidden" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button type="submit">Sign up</button>
+      </form>
+      <p class="signup-msg" id="signup-msg" role="status" aria-live="polite"></p>
+    </div>
+  </header>
+
+  <section class="block products" id="granola">
+    <div class="inner">
+      <h2 class="section-heading">The Granola</h2>
+      <p class="products-sub">Three flavors. Gluten-free oats. Baked by hand in small batches.</p>
+
+      <div class="product-grid">
+        <article class="product">
+          <div class="product-img"><img src="images/original.jpg" alt="Bag of Original Granola" loading="lazy" onerror="this.remove()"></div>
+          <h3 class="product-name">Original</h3>
+          <p class="product-tagline">Tart cherries, pistachios &amp; toasted coconut.</p>
+          <p class="product-ingredients">Gluten free rolled oats, unsweetened coconut chips, pistachios, almonds, dried sour cherries, pumpkin seeds, EVOO, maple syrup, brown sugar, salt.</p>
+          <a class="product-order" href="mailto:WilderGranola@gmail.com?subject=Order%3A%20Original%20Granola">Order</a>
+        </article>
+
+        <article class="product">
+          <div class="product-img"><img src="images/ginger-3-seed.jpg" alt="Bag of Ginger 3-Seed Granola" loading="lazy" onerror="this.remove()"></div>
+          <h3 class="product-name">Ginger 3-Seed</h3>
+          <p class="product-tagline">A little ginger kick with sunflower, hemp &amp; pumpkin seeds.</p>
+          <p class="product-ingredients">Gluten free rolled oats, unsweetened coconut chips, sunflower seeds, hemp hearts, dried sour cherries, pumpkin seeds, EVOO, maple syrup, brown sugar, salt.</p>
+          <a class="product-order" href="mailto:WilderGranola@gmail.com?subject=Order%3A%20Ginger%203-Seed%20Granola">Order</a>
+        </article>
+
+        <article class="product">
+          <div class="product-img"><img src="images/chocolate-almond.jpg" alt="Bag of Chocolate Almond Granola" loading="lazy" onerror="this.remove()"></div>
+          <h3 class="product-name">Chocolate Almond</h3>
+          <p class="product-tagline">Dark chocolate and roasted almonds.</p>
+          <p class="product-ingredients">Gluten free rolled oats, unsweetened coconut chips, almonds, dark chocolate, pumpkin seeds, EVOO, maple syrup, brown sugar, salt.</p>
+          <a class="product-order" href="mailto:WilderGranola@gmail.com?subject=Order%3A%20Chocolate%20Almond%20Granola">Order</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block story" id="our-story">
+    <div class="inner story-grid">
+      <div class="story-copy">
+        <h2 class="section-heading">Our Story</h2>
+        <p>Wilder Granola started in our DC kitchen, with a sheet pan, a big bag of oats, and a habit of giving jars away to anyone who stopped by.</p>
+        <p>Friends kept asking for refills, so we kept baking. Every batch is still mixed, toasted, and packed by hand, with gluten-free oats, real maple syrup, good olive oil, and nothing you can't pronounce.</p>
+        <p>We think breakfast should be a little wild. We hope you do too.</p>
+        <p class="story-sign">— The Wilder crew</p>
+      </div>
+      <div class="story-photo">
+        <img src="images/our-story.jpg" alt="The founders of Wilder Granola" loading="lazy" onerror="this.remove()">
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 Wilder Granola &middot; Washington, DC &middot;
+    <a href="mailto:WilderGranola@gmail.com">WilderGranola@gmail.com</a>
+  </footer>
+
+<script>
+(function () {
+  var form = document.getElementById('signup');
+  var msg = document.getElementById('signup-msg');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = form.email.value.trim();
+    var endpoint = form.dataset.endpoint;
+
+    if (!endpoint) {
+      window.location.href = 'mailto:WilderGranola@gmail.com?subject=' +
+        encodeURIComponent('Add me to the Wilder Granola list') +
+        '&body=' + encodeURIComponent('Please add ' + email + ' to the list!');
+      return;
+    }
+
+    msg.textContent = 'Signing you up…';
+    var data = new URLSearchParams(new FormData(form));
+    data.append('page', window.location.href);
+    // Google Apps Script doesn't allow reading the response cross-origin,
+    // so send with no-cors and treat any completed request as success.
+    fetch(endpoint, { method: 'POST', mode: 'no-cors', body: data })
+      .then(function () {
+        form.reset();
+        msg.textContent = "You're in. Welcome to the pack!";
+      })
+      .catch(function () {
+        msg.textContent = 'Something went wrong. Please try again.';
+      });
+  });
+})();
+</script>
 </body>
 </html>
